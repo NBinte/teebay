@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import {
   Button,
   FormControl,
@@ -13,12 +15,45 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { textFieldStyle } from '../assets/styles/signUpStyle';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../graphql/signUpMutation';
+import Swal from 'sweetalert2';
 
-/** @jsxImportSource @emotion/react */
+const bcrypt = require('bcryptjs-react');
 
 const SignUp = () => {
+  const [createUser, { data, error, loading }] = useMutation(CREATE_USER);
+
   const methods = useForm();
-  const onSubmit = (data: any) => console.log(data);
+
+  const onSubmit = (data: any) => {
+    const hashedPassword = bcrypt.hashSync(data.password, bcrypt.genSaltSync());
+
+    console.log(hashedPassword);
+
+    const CreateUserInput = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      address: data.address,
+      email: data.email,
+      password: hashedPassword.toString(),
+      phoneNumber: data.phoneNumber,
+    };
+
+    createUser({
+      variables: {
+        createUserInput: CreateUserInput,
+      },
+    })
+      .then(response => {
+        Swal.fire('Successfully Registered!', '', 'success').then(() => {
+          navigate('/sign-in');
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const [showPassword, setShowPassword] = React.useState(false);
 

@@ -9,7 +9,7 @@ import { DateTime } from 'graphql-scalars/typings/typeDefs';
 
 @ObjectType()
 export class UserEntity {
-  @Field(() => Number, { description: 'Id of User', nullable: true })
+  @Field(() => Int, { description: 'Id of User', nullable: true })
   id: number;
 
   @Field(() => String, { description: 'First Name of User', nullable: true })

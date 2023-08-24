@@ -4,7 +4,6 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { GetUserInput } from './dto/get-user.input';
 import { PrismaService } from 'src/prisma.service';
 
-
 @Injectable()
 export class UsersService {
   constructor (private prisma: PrismaService) {}
@@ -30,9 +29,14 @@ export class UsersService {
   }
 
   async createNewUser (createUserInput: CreateUserInput) {
-    const createdUser = this.prisma.user.create({
+
+    console.log(createUserInput);
+
+    const createdUser = await this.prisma.user.create({
       data: createUserInput,
     });
+
+    console.log(createdUser);
 
     return createdUser;
   }
@@ -51,7 +55,7 @@ export class UsersService {
     const fetchedUser = this.prisma.user.findFirstOrThrow({
       where: queryArray,
     });
-    
+
     return fetchedUser;
   }
 }

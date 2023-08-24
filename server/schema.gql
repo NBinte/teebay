@@ -9,7 +9,7 @@ type Donation {
 
 type UserEntity {
   """Id of User"""
-  id: Float
+  id: Int
 
   """First Name of User"""
   firstName: String
