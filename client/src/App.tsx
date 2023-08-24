@@ -1,17 +1,48 @@
 import { Grid } from '@mui/material';
 import SignUp from './signUp/SignUp';
-import { appGrid } from './style';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { appGrid } from './assets/styles/style';
+import SignIn from './signIn/SignIn';
 
 /** @jsxImportSource @emotion/react */
 
-function App () {
-  return (
-    <>
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
       <Grid css={appGrid}>
         <Grid>
           <SignUp></SignUp>
         </Grid>
       </Grid>
+    ),
+  },
+  {
+    path: '/sign-up',
+    element: (
+      <Grid css={appGrid}>
+        <Grid>
+          <SignUp></SignUp>
+        </Grid>
+      </Grid>
+    ),
+  },
+  {
+    path: '/sign-in',
+    element: (
+      <Grid css={appGrid}>
+        <Grid>
+          <SignIn></SignIn>
+        </Grid>
+      </Grid>
+    ),
+  },
+]);
+
+function App () {
+  return (
+    <>
+      <RouterProvider router={router} />
     </>
   );
 }

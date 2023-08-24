@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { textFieldStyle } from '../assets/styles/signUpStyle';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { textFieldStyle } from '../assets/styles/signUpStyle';
+import { useNavigate } from 'react-router-dom';
 
 /** @jsxImportSource @emotion/react */
 
@@ -39,6 +40,8 @@ const SignUp = () => {
   ) => {
     event.preventDefault();
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -185,7 +188,11 @@ const SignUp = () => {
             </Grid>
           </Grid>
 
-          <Grid display={'flex'} justifyContent={'center'}>
+          <Grid
+            display={'flex'}
+            justifyContent={'center'}
+            marginBottom={'20px'}
+          >
             <Button
               variant='contained'
               type='submit'
@@ -193,6 +200,21 @@ const SignUp = () => {
             >
               Register
             </Button>
+          </Grid>
+
+          <Grid
+            item
+            lg={12}
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'baseline'}
+          >
+            <Grid>Already have an account?</Grid>
+            <Grid>
+              <Button variant='text' onClick={() => navigate('/sign-in')}>
+                Sign In
+              </Button>
+            </Grid>
           </Grid>
         </form>
       </FormProvider>
