@@ -26,13 +26,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Instructions
 
 Go to project Directory (root/server) and run -
 
 ## npx prisma migrate dev --name init
-
-## Running the app
 
 ## npm run dev
 
