@@ -8,40 +8,37 @@ import { PrismaService } from 'src/prisma.service';
 export class UsersService {
   constructor (private prisma: PrismaService) {}
 
-  create (createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
-  }
+  // create (createUserInput: CreateUserInput) {
+  //   return 'This action adds a new user';
+  // }
 
-  findAll () {
-    return `This action returns all users`;
-  }
+  // findAll () {
+  //   return `This action returns all users`;
+  // }
 
-  findOne (id: number) {
-    return `This action returns a #${id} user`;
-  }
+  // findOne (id: number) {
+  //   return `This action returns a #${id} user`;
+  // }
 
-  update (id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
+  // update (id: number, updateUserInput: UpdateUserInput) {
+  //   return `This action updates a #${id} user`;
+  // }
 
-  remove (id: number) {
-    return `This action removes a #${id} user`;
-  }
+  // remove (id: number) {
+  //   return `This action removes a #${id} user`;
+  // }
 
   async createNewUser (createUserInput: CreateUserInput) {
-
     console.log(createUserInput);
 
     const createdUser = await this.prisma.user.create({
       data: createUserInput,
     });
 
-    console.log(createdUser);
-
     return createdUser;
   }
 
-  async getUserByID (getUserInput: GetUserInput) {
+  async getUserByField (getUserInput: GetUserInput) {
     let queryArray = {};
 
     if (getUserInput.id) {

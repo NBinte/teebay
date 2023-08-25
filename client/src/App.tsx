@@ -3,6 +3,7 @@ import SignUp from './signUp/SignUp';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { appGrid } from './assets/styles/style';
 import SignIn from './signIn/SignIn';
+import AddProduct from './addProduct/AddProduct';
 
 /** @jsxImportSource @emotion/react */
 
@@ -33,6 +34,16 @@ const router = createBrowserRouter([
       <Grid css={appGrid}>
         <Grid>
           <SignIn></SignIn>
+        </Grid>
+      </Grid>
+    ),
+  },
+  {
+    path: '/add-product',
+    element: (
+      <Grid css={appGrid}>
+        <Grid>
+          <AddProduct></AddProduct>
         </Grid>
       </Grid>
     ),

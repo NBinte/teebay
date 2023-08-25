@@ -44,9 +44,7 @@ scalar DateTime
 type Query {
   donations: [Donation!]!
   donation(id: Int!): Donation!
-  users: [UserEntity!]!
-  user(id: Int!): UserEntity!
-  getUserByID(getUserInput: GetUserInput!): UserEntity!
+  getUserByField(getUserInput: GetUserInput!): UserEntity!
 }
 
 input GetUserInput {
@@ -73,9 +71,6 @@ type Mutation {
   createDonation(createDonationInput: CreateDonationInput!): Donation!
   updateDonation(updateDonationInput: UpdateDonationInput!): Donation!
   removeDonation(id: Int!): Donation!
-  createUser(createUserInput: CreateUserInput!): UserEntity!
-  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
-  removeUser(id: Int!): UserEntity!
   createNewUser(createUserInput: CreateUserInput!): UserEntity!
 }
 
@@ -108,25 +103,4 @@ input CreateUserInput {
 
   """Password of User"""
   password: String
-}
-
-input UpdateUserInput {
-  """First Name of User"""
-  firstName: String
-
-  """Last name of User"""
-  lastName: String
-
-  """Address of User"""
-  address: String
-
-  """Email of User"""
-  email: String
-
-  """Phone Number of User"""
-  phoneNumber: String
-
-  """Password of User"""
-  password: String
-  id: Int!
 }

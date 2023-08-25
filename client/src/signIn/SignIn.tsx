@@ -8,17 +8,49 @@ import {
   TextField,
 } from '@mui/material';
 import React from 'react';
+import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { textFieldStyle } from '../assets/styles/signUpStyle';
 import { useNavigate } from 'react-router-dom';
+import { FETCH_USER } from '../graphql/signInQuery';
+import { useQuery } from '@apollo/client';
+import Swal from 'sweetalert2';
+
+const bcrypt = require('bcryptjs-react');
 
 /** @jsxImportSource @emotion/react */
 
 const SignIn = () => {
   const methods = useForm();
-  const onSubmit = (data: any) => console.log(data);
+
+  const [runQuery, setRunQuery] = useState(true);
+
+  const { data: fetchedUser } = useQuery(FETCH_USER, {
+    variables: {
+      getUserInput: {
+        email: methods.watch('emailLogin'),
+      },
+    },
+    skip: runQuery,
+  });
+
+  const onSubmit = (data: any) => {
+    setRunQuery(false);
+
+    const ifPasswordMatched = bcrypt.compareSync(
+      data.passwordLogin,
+      fetchedUser?.getUserByField?.password,
+    );
+
+    if (ifPasswordMatched) {
+      navigate('/add-product');
+    } else {
+      Swal.fire('Login Failed!', '', 'error');
+      methods.reset();
+    }
+  };
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -63,9 +95,9 @@ const SignIn = () => {
                 fullWidth
                 placeholder='Email'
                 InputLabelProps={{ shrink: false }}
-                {...methods.register('email')}
-                id='email'
-                value={methods.watch('email')}
+                {...methods.register('emailLogin')}
+                id='emailLogin'
+                value={methods.watch('emailLogin')}
               />
             </Grid>
 
@@ -74,8 +106,8 @@ const SignIn = () => {
               <FormControl fullWidth>
                 <OutlinedInput
                   placeholder='Password'
-                  {...methods.register('password')}
-                  id='password'
+                  {...methods.register('passwordLogin')}
+                  id='passwordLogin'
                   type={showPassword ? 'text' : 'password'}
                   endAdornment={
                     <InputAdornment position='end'>

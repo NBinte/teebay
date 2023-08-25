@@ -10,30 +10,30 @@ import { GetUserInput } from './dto/get-user.input';
 export class UsersResolver {
   constructor (private readonly usersService: UsersService) {}
 
-  @Mutation(() => UserEntity)
-  createUser (@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
-  }
+  // @Mutation(() => UserEntity)
+  // createUser (@Args('createUserInput') createUserInput: CreateUserInput) {
+  //   return this.usersService.create(createUserInput);
+  // }
 
-  @Query(() => [UserEntity], { name: 'users' })
-  findAll () {
-    return this.usersService.findAll();
-  }
+  // @Query(() => [UserEntity], { name: 'users' })
+  // findAll () {
+  //   return this.usersService.findAll();
+  // }
 
-  @Query(() => UserEntity, { name: 'user' })
-  findOne (@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.findOne(id);
-  }
+  // @Query(() => UserEntity, { name: 'user' })
+  // findOne (@Args('id', { type: () => Int }) id: number) {
+  //   return this.usersService.findOne(id);
+  // }
 
-  @Mutation(() => UserEntity)
-  updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
-  }
+  // @Mutation(() => UserEntity)
+  // updateUser (@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+  //   return this.usersService.update(updateUserInput.id, updateUserInput);
+  // }
 
-  @Mutation(() => UserEntity)
-  removeUser (@Args('id', { type: () => Int }) id: number) {
-    return this.usersService.remove(id);
-  }
+  // @Mutation(() => UserEntity)
+  // removeUser (@Args('id', { type: () => Int }) id: number) {
+  //   return this.usersService.remove(id);
+  // }
 
   @Mutation(() => UserEntity, { name: 'createNewUser' })
   async createNewUser (
@@ -42,8 +42,8 @@ export class UsersResolver {
     return await this.usersService.createNewUser(createUserInput);
   }
 
-  @Query(() => UserEntity, { name: 'getUserByID' })
-  async getUserByID (@Args('getUserInput') getUserInput: GetUserInput) {
-    return await this.usersService.getUserByID(getUserInput);
+  @Query(() => UserEntity, { name: 'getUserByField' })
+  async getUserByField (@Args('getUserInput') getUserInput: GetUserInput) {
+    return await this.usersService.getUserByField(getUserInput);
   }
 }
