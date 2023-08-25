@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
-import { DonationsModule } from './donations/donations.module';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -16,9 +17,11 @@ import { UsersModule } from './users/users.module';
       autoSchemaFile: 'schema.gql',
     }),
 
-    DonationsModule,
-
     UsersModule,
+
+    ProductsModule,
+
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

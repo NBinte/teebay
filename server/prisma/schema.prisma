@@ -19,5 +19,35 @@ model User {
   phoneNumber String
   password    String
   createdAt   DateTime  @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime? @updatedAt
+  updatedAt   DateTime? @updatedAt @db.Timestamptz(3)
+}
+
+model Product {
+  id          Int                    @id @default(autoincrement())
+  title       String
+  price       Float
+  rent        Float
+  description String
+  views       Int
+  categories  CategoriesOnProducts[]
+  createdAt   DateTime               @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime?              @updatedAt @db.Timestamptz(3)
+}
+
+model Category {
+  id        Int                    @id @default(autoincrement())
+  name      String
+  products  CategoriesOnProducts[]
+  createdAt DateTime               @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime?              @updatedAt @db.Timestamptz(3)
+}
+
+model CategoriesOnProducts {
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  Int // relation scalar field (used in the `@relation` attribute above)
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  @@id([productId, categoryId])
 }

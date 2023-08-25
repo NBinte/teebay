@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Donation {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type UserEntity {
   """Id of User"""
   id: Int
@@ -41,9 +36,53 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type CategoryFromProductDto {
+  """Id of User"""
+  id: Int
+
+  """First Name of User"""
+  name: String
+
+  """Password of User"""
+  createdAt: DateTime
+
+  """Password of User"""
+  updatedAt: DateTime
+}
+
+type ProductEntity {
+  """Id of User"""
+  id: Int
+
+  """First Name of User"""
+  title: String
+
+  """Last name of User"""
+  price: Float
+
+  """Address of User"""
+  rent: Float
+
+  """Email of User"""
+  description: String
+
+  """Phone Number of User"""
+  views: Int
+
+  """Password of User"""
+  password: String
+
+  """Password of User"""
+  categories: [CategoryFromProductDto!]
+
+  """Password of User"""
+  createdAt: DateTime
+
+  """Password of User"""
+  updatedAt: DateTime
+}
+
 type Query {
-  donations: [Donation!]!
-  donation(id: Int!): Donation!
   getUserByField(getUserInput: GetUserInput!): UserEntity!
 }
 
@@ -68,21 +107,8 @@ input GetUserInput {
 }
 
 type Mutation {
-  createDonation(createDonationInput: CreateDonationInput!): Donation!
-  updateDonation(updateDonationInput: UpdateDonationInput!): Donation!
-  removeDonation(id: Int!): Donation!
   createNewUser(createUserInput: CreateUserInput!): UserEntity!
-}
-
-input CreateDonationInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateDonationInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  addNewProduct(createProductInput: CreateProductInput!): ProductEntity!
 }
 
 input CreateUserInput {
@@ -103,4 +129,29 @@ input CreateUserInput {
 
   """Password of User"""
   password: String
+}
+
+input CreateProductInput {
+  """First Name of User"""
+  title: String
+
+  """Last name of User"""
+  price: Float
+
+  """Address of User"""
+  rent: Float
+
+  """Email of User"""
+  description: String
+
+  """Phone Number of User"""
+  views: Int
+
+  """Password of User"""
+  categories: CategoryFromProductInput
+}
+
+input CategoryFromProductInput {
+  """First Name of User"""
+  name: String
 }

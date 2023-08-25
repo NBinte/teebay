@@ -1,11 +1,4 @@
-import {
-  ObjectType,
-  Field,
-  Int,
-  ID,
-  GraphQLISODateTime,
-} from '@nestjs/graphql';
-import { DateTime } from 'graphql-scalars/typings/typeDefs';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserEntity {
