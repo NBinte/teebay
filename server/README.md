@@ -34,3 +34,7 @@ Go to project Directory (root/server) and run -
 
 ## npm run dev
 
+GraphQL server - 
+
+## http://localhost:3000/graphql
+
