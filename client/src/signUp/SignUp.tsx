@@ -29,8 +29,6 @@ const SignUp = () => {
   const onSubmit = (data: any) => {
     const hashedPassword = bcrypt.hashSync(data.password, bcrypt.genSaltSync());
 
-    console.log(hashedPassword);
-
     const CreateUserInput = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -51,7 +49,7 @@ const SignUp = () => {
         });
       })
       .catch(error => {
-        console.log(error);
+        //
       });
   };
 

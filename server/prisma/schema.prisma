@@ -27,8 +27,9 @@ model Product {
   title       String
   price       Float
   rent        Float
+  rentType    String
   description String
-  views       Int
+  views       Int?
   categories  CategoriesOnProducts[]
   createdAt   DateTime               @default(now()) @db.Timestamptz(3)
   updatedAt   DateTime?              @updatedAt @db.Timestamptz(3)

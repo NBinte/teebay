@@ -12,15 +12,18 @@ export class CreateProductInput {
   @Field(() => Float, { description: 'Address of User', nullable: true })
   rent: number;
 
+  @Field(() => String, { description: 'First Name of User', nullable: true })
+  rentType: string;
+
   @Field(() => String, { description: 'Email of User', nullable: true })
   description: string;
 
   @Field(() => Int, { description: 'Phone Number of User', nullable: true })
   views: number;
 
-  @Field(() => CategoryFromProductInput, {
+  @Field(() => [CategoryFromProductInput], {
     description: 'Password of User',
     nullable: true,
   })
-  categories: CategoryFromProductInput;
+  categories: CategoryFromProductInput[];
 }

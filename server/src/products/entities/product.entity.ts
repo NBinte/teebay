@@ -15,6 +15,9 @@ export class ProductEntity {
   @Field(() => Float, { description: 'Address of User', nullable: true })
   rent: number;
 
+  @Field(() => String, { description: 'First Name of User', nullable: true })
+  rentType: string;
+
   @Field(() => String, { description: 'Email of User', nullable: true })
   description: string;
 

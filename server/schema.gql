@@ -63,6 +63,9 @@ type ProductEntity {
   """Address of User"""
   rent: Float
 
+  """First Name of User"""
+  rentType: String
+
   """Email of User"""
   description: String
 
@@ -141,6 +144,9 @@ input CreateProductInput {
   """Address of User"""
   rent: Float
 
+  """First Name of User"""
+  rentType: String
+
   """Email of User"""
   description: String
 
@@ -148,7 +154,7 @@ input CreateProductInput {
   views: Int
 
   """Password of User"""
-  categories: CategoryFromProductInput
+  categories: [CategoryFromProductInput!]
 }
 
 input CategoryFromProductInput {
